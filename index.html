@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Personal academic homepage of Dr. Sung Jun An — AI, data science, groundwater modeling, and digital transformation." />
+  <title>Sung Jun An | Researcher</title>
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-2: #eef3f8;
+      --text: #162033;
+      --muted: #657087;
+      --line: #dce3ec;
+      --accent: #1f5eff;
+      --accent-2: #10a37f;
+      --shadow: 0 18px 50px rgba(25, 44, 78, 0.08);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        Inter, Pretendard, "Noto Sans KR", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(31, 94, 255, 0.08), transparent 28%),
+        radial-gradient(circle at 90% 15%, rgba(16, 163, 127, 0.08), transparent 24%),
+        var(--bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(calc(100% - 36px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 249, 252, 0.82);
+      border-bottom: 1px solid rgba(220, 227, 236, 0.7);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-size: 1.02rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(31, 94, 255, 0.07);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 6px rgba(16, 163, 127, 0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      letter-spacing: -0.065em;
+      line-height: 0.98;
+      font-weight: 900;
+    }
+
+    .hero-sub {
+      margin-top: 24px;
+      max-width: 760px;
+      font-size: clamp(1.05rem, 1.7vw, 1.3rem);
+      color: var(--muted);
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 13px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 800;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn.primary {
+      background: var(--text);
+      color: white;
+      border-color: var(--text);
+    }
+
+    .profile-card {
+      background: linear-gradient(145deg, #ffffff, #f3f7fb);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(31, 94, 255, 0.08);
+      top: -80px;
+      right: -70px;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(31, 94, 255, 0.92), rgba(16, 163, 127, 0.84));
+      display: grid;
+      place-items: center;
+      color: white;
+      text-align: center;
+      padding: 24px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .profile-meta {
+      margin-top: 22px;
+    }
+
+    .profile-meta h2 {
+      margin: 0 0 4px;
+      font-size: 1.25rem;
+    }
+
+    .profile-meta p {
+      margin: 3px 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      letter-spacing: -0.045em;
+      line-height: 1.05;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 520px;
+      color: var(--muted);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(25, 44, 78, 0.04);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1.16rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .research-card {
+      padding: 26px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      transition: 0.2s ease;
+    }
+
+    .research-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .num {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 30px;
+    }
+
+    .research-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+    }
+
+    .research-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--line);
+      margin-left: 8px;
+      padding-left: 28px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -36px;
+      top: 6px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 4px solid var(--bg);
+    }
+
+    .timeline-item .small {
+      color: var(--accent);
+      font-size: 0.84rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item h3 {
+      margin: 0 0 6px;
+      font-size: 1.12rem;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .publication {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .publication:last-child {
+      border-bottom: 0;
+    }
+
+    .pub-year {
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .pub-title {
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .pub-meta {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .contact-box {
+      background: var(--text);
+      color: white;
+      border-radius: 30px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .contact-box h2 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      letter-spacing: -0.055em;
+      line-height: 1;
+    }
+
+    .contact-box p {
+      margin: 18px 0 0;
+      color: rgba(255,255,255,0.72);
+      max-width: 680px;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-links a {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: 700;
+    }
+
+    .contact-links a:hover {
+      background: rgba(255,255,255,0.14);
+    }
+
+    footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        max-width: 520px;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .section-head {
+        display: block;
+      }
+
+      .section-head p {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding-top: 64px;
+      }
+
+      .publication {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .contact-box {
+        padding: 30px 24px;
+      }
+
+      .card,
+      .research-card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">SUNG JUN <span>AN</span></a>
+
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#research">Research</a>
+          <a href="#projects">Projects</a>
+          <a href="#publications">Publications</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <header class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Research · AI · Data Science</div>
+
+          <h1>
+            SungJun An
+          </h1>
+
+          <p class="hero-sub">
+            I am a researcher and educator working at the intersection of
+            <strong>artificial intelligence, data science, environmental modeling,
+            and digital transformation</strong>.
+            My work focuses on turning real-world data into interpretable models,
+            practical systems, and better decisions.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="#research">Explore Research</a>
+            <a class="btn" href="#contact">Contact</a>
+            <!-- Later: replace # with your CV PDF path -->
+            <a class="btn" href="#" onclick="alert('Add your CV PDF later, e.g. files/CV_SungJunAn.pdf'); return false;">CV</a>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <!--
+            PHOTO UPDATE GUIDE
+            1. Put your photo in the same repository, e.g. images/profile.jpg
+            2. Replace the div below with:
+               <img src="images/profile.jpg" alt="Portrait of Sung Jun An"
+                    style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:22px;">
+          -->
+          <div class="avatar-placeholder">
+            PROFILE PHOTO<br />
+            <span style="font-size:.8rem; opacity:.75; margin-top:8px;">
+              Add later
+            </span>
+          </div>
+
+          <div class="profile-meta">
+            <h2>Dr. Sung Jun An</h2>
+            <p>Jeju Halla University</p>
+            <p>AI · Data Science · Applied Research</p>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2>About</h2>
+          <p>
+            Research should be rigorous enough for science and useful enough
+            for the real world.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <h3>Research Philosophy</h3>
+            <p>
+              I am interested in research that connects statistical reasoning,
+              machine learning, domain knowledge, and measurable real-world impact.
+              Rather than treating AI as a black box, I prefer models that help us
+              understand why systems behave the way they do.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Current Focus</h3>
+            <p>
+              My current work spans AI-assisted environmental modeling,
+              time-series prediction, regional digital transformation,
+              data-driven policy, and practical AI education.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container">
+        <div class="section-head">
+          <h2>Research Interests</h2>
+          <p>
+            A multidisciplinary research agenda connecting AI methods
+            with complex regional and environmental systems.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-card">
+            <div class="num">01</div>
+            <h3>AI & Machine Learning</h3>
+            <p>
+              Deep learning, LSTM-based time-series prediction,
+              interpretable AI, AI agents, and applied machine learning.
+            </p>
+          </article>
+
+          <article class="research-card">
+            <div class="num">02</div>
+            <h3>Groundwater & Environmental Data</h3>
+            <p>
+              Data-driven analysis of groundwater dynamics,
+              rainfall-response relationships, and predictive environmental modeling.
+            </p>
+          </article>
+
+          <article class="research-card">
+            <div class="num">03</div>
+            <h3>Digital Transformation</h3>
+            <p>
+              Regional AI ecosystems, digital industry development,
+              workforce strategy, and evidence-based technology policy.
+            </p>
+          </article>
+        </div>
+
+        <div class="chips">
+          <span class="chip">Artificial Intelligence</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">LSTM</span>
+          <span class="chip">Time-Series Analysis</span>
+          <span class="chip">Groundwater Modeling</span>
+          <span class="chip">Data Science</span>
+          <span class="chip">AI Agents</span>
+          <span class="chip">Digital Policy</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Projects</h2>
+          <p>
+            Representative themes. Replace or expand these with your current
+            funded projects and collaborations.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="small">ONGOING RESEARCH</div>
+            <h3>LMM-Guided LSTM for Jeju Groundwater Prediction</h3>
+            <p>
+              Combining linear mixed models with deep learning to identify
+              site-specific rainfall response windows and improve groundwater-level prediction.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="small">REGIONAL AI</div>
+            <h3>AI Workforce & Digital Ecosystem Strategy</h3>
+            <p>
+              Research and policy work on practical AI workforce development,
+              AI-agent capabilities, digital infrastructure, and sustainable regional innovation.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="small">EDUCATION</div>
+            <h3>Applied Generative AI & Data Science Education</h3>
+            <p>
+              Designing hands-on curricula in generative AI, Python,
+              data science, robotics, and agent-based AI workflows.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container">
+        <div class="section-head">
+          <h2>Publications</h2>
+          <p>
+            Add your publications here. Keeping this section simple makes
+            future updates easy.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="publication">
+            <div class="pub-year">2026</div>
+            <div>
+              <div class="pub-title">Your publication title goes here</div>
+              <div class="pub-meta">
+                Sung Jun An, Co-author · Journal Name · DOI / Link
+              </div>
+            </div>
+          </div>
+
+          <div class="publication">
+            <div class="pub-year">2025</div>
+            <div>
+              <div class="pub-title">Your publication title goes here</div>
+              <div class="pub-meta">
+                Sung Jun An, Co-author · Journal Name · DOI / Link
+              </div>
+            </div>
+          </div>
+
+          <div class="publication">
+            <div class="pub-year">+</div>
+            <div>
+              <div class="pub-title">More publications</div>
+              <div class="pub-meta">
+                Add Google Scholar, ORCID, Scopus, or ResearchGate links here later.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="container">
+        <div class="section-head">
+          <h2>Teaching</h2>
+          <p>
+            Teaching focused on practical understanding, reproducible analysis,
+            and AI skills that students can actually use.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-card">
+            <div class="num">COURSE</div>
+            <h3>Generative AI</h3>
+            <p>
+              Prompting, AI-assisted workflows, tool use, AI agents,
+              and practical applications.
+            </p>
+          </article>
+
+          <article class="research-card">
+            <div class="num">COURSE</div>
+            <h3>Python & Data Science</h3>
+            <p>
+              Programming fundamentals, data handling,
+              visualization, statistics, and machine learning.
+            </p>
+          </article>
+
+          <article class="research-card">
+            <div class="num">COURSE</div>
+            <h3>Robotics & Applied AI</h3>
+            <p>
+              Introductory robotics, sensing, computation,
+              and AI-based problem solving for non-specialists.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2>Let’s connect.</h2>
+            <p>
+              I welcome research collaboration, interdisciplinary projects,
+              academic exchange, and conversations around AI, data science,
+              environmental modeling, and regional digital innovation.
+            </p>
+          </div>
+
+          <div class="contact-links">
+            <!-- Replace the placeholders below -->
+            <a href="mailto:your-email@example.com">Email →</a>
+            <a href="#" onclick="alert('Add your Google Scholar URL here.'); return false;">Google Scholar →</a>
+            <a href="#" onclick="alert('Add your ORCID URL here.'); return false;">ORCID →</a>
+            <a href="#" onclick="alert('Add your GitHub URL here.'); return false;">GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div>© <span id="year"></span> Sung Jun An</div>
+      <div>Built as a simple, fast static academic website.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
