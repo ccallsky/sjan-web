@@ -1,0 +1,10 @@
+'use strict';
+const data=window.COURSE;
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n};
+const safeUrl=value=>{try{const u=new URL(value,location.href);return ['http:','https:'].includes(u.protocol)||u.protocol==='file:'&&location.protocol==='file:'?u.href:null}catch{return null}};
+function link(title,url,cls){const a=el('a',title,cls),safe=safeUrl(url);if(safe){a.href=safe;a.target='_blank';a.rel='noopener noreferrer'}return a}
+data.lessons.forEach((l,i)=>{const card=el('article',undefined,'lesson'),top=el('div',undefined,'lesson-top');top.append(el('span',String(i+1).padStart(2,'0'),'number'),el('span',l.tag,'tag'));card.append(top,el('h3',l.title),el('p',l.desc));const d=el('details'),ul=el('ul');l.points.forEach(p=>ul.append(el('li',p)));const exercise=el('div',undefined,'exercise');exercise.append(el('b','直接 해보기'.replace('直接','직접')),el('p',l.task));d.append(el('summary','학습 내용 펼치기'),ul,exercise);const a=el('a','↓ 학습 노트 다운로드 · TXT','download');a.href='./materials/lesson-'+(i+1)+'.txt';a.download='lesson-'+(i+1)+'.txt';card.append(d,a);document.querySelector('#lessons').append(card)});
+data.materials.forEach(m=>document.querySelector('#extras').append(link(m.title,m.url,'resource')));
+data.videos.forEach((v,i)=>{const a=link('',v.url,'video'),cover=el('div',undefined,'video-cover');cover.append(el('strong','▶'),el('span','REFERENCE '+String(i+1).padStart(2,'0')));a.append(cover,el('h3',v.title),el('p',v.note),el('span','영상 보러 가기 ↗','video-action'));document.querySelector('#video-list').append(a)});
+data.notices.forEach(n=>{const row=el('article',undefined,'notice-row'),body=el('div');body.append(el('h3',n.title),el('p',n.text));row.append(el('span',n.date),body);document.querySelector('#notice-list').append(row)});
+const form=window.SITE_CONFIG.assignmentFormUrl.trim();const box=document.querySelector('#submission-link');if(form&&safeUrl(form)&&form.startsWith('https://'))box.append(link('과제 제출 설문 열기 ↗',form,'primary'));else box.append(el('p','과제 접수를 준비 중입니다. 설문이 연결되면 이곳에서 제출할 수 있습니다.','disabled'));
